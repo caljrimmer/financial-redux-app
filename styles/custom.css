@@ -1,0 +1,66 @@
+.sidebar-item p b {
+   color:#fff;
+}
+
+.sparklines .line{
+   stroke: #b2dfdb;
+}
+
+.open path,
+.close path,
+.high path,
+.low path {
+   stroke: #FFF;
+   fill: #FFF;
+}
+
+.teal {
+   color:#e0f2f1;
+}
+
+.teal b {
+   color:#fff;
+}
+    
+.teal.card {
+   height: 384px
+}
+
+.teal .card-action a {
+   color:#fff;
+   border-bottom:1px dotted #fff;
+}
+
+.chip {
+   float: right;
+}
+
+.collection .collection-item.avatar {
+	color:#666;
+}
+
+.collection .collection-item.avatar:nth-child(2){
+   opacity:0.8;
+}
+
+.collection .collection-item.avatar:nth-child(3){
+   opacity:0.7;
+}
+
+.collection .collection-item.avatar:nth-child(4){
+   opacity:0.6;
+}
+
+.collection .collection-item.avatar .title {
+	font-size:20px;
+	font-weight:bold;
+	color:#000;
+}
+
+.collection .collection-item .small {
+	font-size:10px;
+}
+
+.collection .collection-item .secondary-content {
+	color:#ccc;
+}

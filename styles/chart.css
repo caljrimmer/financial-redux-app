@@ -1,0 +1,45 @@
+.chart {
+   width:100%;
+   height:200px;
+   margin-bottom:30px;
+}
+
+.chart .axis {
+    stroke-width: 1;
+}
+
+.chart .axis .tick line {
+    stroke: black;
+}
+
+.chart .axis .tick text {
+    fill: black;
+    font-size: 0.7em;
+}
+
+.chart .axis .domain {
+    fill: none;
+    stroke:#fff;
+}
+
+.chart .group {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.5;
+}
+
+.chart .y.axis .tick text{
+	fill:#eaeaea;
+	stroke:none;
+	font-size:13px;
+}
+
+.chart .y.axis .tick line{
+	stroke-dasharray: 2,2;	
+	stroke:#eaeaea;
+}
+
+
+.chart path.line {
+	stroke:green;
+}
