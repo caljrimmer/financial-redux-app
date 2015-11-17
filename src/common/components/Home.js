@@ -5,6 +5,7 @@ import * as AppActions from '../actions/app';
 
 import News from './News';
 import Table from './Table';
+import HeartBeat from './HeartBeat';
 import Chart from './Chart';
 
 import ws from '../../utils/websockets';
@@ -22,14 +23,20 @@ class Home extends Component {
 
     return (
       <div className="row">
+
         <div className="row">
-          <Chart data={bitcoin} />
+          <HeartBeat data={bitcoin} />
         </div>
         
         <div className="row">
             <News />
             <Table data={bitcoin} receivedWsData={receivedWsData} />
         </div>
+
+        <div className="row">
+            <Chart />
+        </div>
+
       </div>
 
     );

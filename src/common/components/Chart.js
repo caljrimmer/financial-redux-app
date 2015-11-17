@@ -11,14 +11,10 @@ class Chart extends Component {
   		this.chart = new ChartD3(this.refs.chart.getDOMNode());
   }
 
-  componentWillReceiveProps (nextProps) {
-      this.chart.update(nextProps.data);
-  }
-
   render() {
     return (
         <div className="col s12 m12">
-          <div ref="chart" className="chart"></div>
+          <div ref="chart" className="chart2"></div>
         </div>
   
     );

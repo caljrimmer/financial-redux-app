@@ -7,37 +7,26 @@ import * as AppActions from '../actions/app';
 
 import Home from '../components/Home';
 import Header from '../components/layout/Header';
-import Sidebar from '../components/layout/Sidebar';
 
 class App extends Component {
 
   constructor(props){
     super(props);
-    this.eventToggleSidebar = this.eventToggleSidebar.bind(this);
-  }
-
-  eventToggleSidebar(e) {
-    e.preventDefault();
-    this.props.toggleSidebar(!this.props.layout.sidebarOpen);
   }
 
   render() {
 
-    const { layout,bitcoin,receivedWsData } = this.props;
-    const { sidebarOpen } = layout;
-    const layoutClass = classNames('wrapper',{open : sidebarOpen});
+    const { bitcoin } = this.props;
 
     return (
-      <div className={layoutClass}>
-        <Sidebar layout={layout} />
+      <div>
   	    <div className="wrap">
           <Header data={bitcoin} />
           <div className="container content">
-            {!this.props.children && <Home />}
+            {!this.props.children && <Home bitcoin={bitcoin} />}
             {this.props.children}
           </div>
         </div>
-        <label className="sidebar-toggle" onClick={this.eventToggleSidebar}></label>
       </div>
     );
   }
@@ -45,8 +34,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    bitcoin : state.bitcoin,
-    layout : state.layout
+    bitcoin : state.bitcoin
   };
 }
 

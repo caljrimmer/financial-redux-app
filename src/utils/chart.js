@@ -8,80 +8,72 @@ class Chart {
 	}
 
 	mapData(data) {
-		if(!data) return false;
-		this.data.push(parseInt(data[0].price));
-		if(this.data.length >= 50){
-			this.data.shift();	
-		}
-	}
 
-	update(data) {
-		if(!data) return false;
-		this.mapData(data.trades);
-	  	this.path
-	      .attr("d", this.line)
-	      .attr("transform", null)
-	      .transition()
-	      .duration(0)
-	      .ease("linear")
-	      .attr("transform", "translate(" + this.x(this.n - this.data.length) + ",0)") 
 	}
 
 	render(chartEl) {
 
-		this.n = 40;
-		this.data = [320];
+		const width = 780;
+		const height = 300;
 
-		var margin = {top: 20, right: 20, bottom: 20, left: 40},
-		    width = 780,
-		    height = 200;
+		const dataGenerator = fc.data.random.financial()
+		    .startDate(new Date(2014, 1, 1))
+		    .filter(function() { return true; });
 
-		var x = d3.scale.linear()
-		    .domain([1, this.n - 1])
+		const data = dataGenerator(70);
+
+		const container = d3.select(chartEl)
+		    .insert('svg', 'div')
+		    .attr('width', width)
+		    .attr('height', height);
+
+		// Create scale for x axis
+		const xScale = fc.scale.dateTime()
+		    .domain(fc.util.extent().fields('date')(data))
 		    .range([0, width]);
-		this.x = x;
 
-		var y = d3.scale.linear()
-		    .domain([290, 370])
-		    .range([height, 0]);
+		// Create scale for y axis
+		const yScale = d3.scale.linear()
+		    .domain(fc.util.extent().fields(['high', 'low'])(data))
+		    .range([height, 0])
+		    .nice();
 
-		this.line = d3.svg.line()
-		    .interpolate("basis")
-		    .x(function(d, i) { return x(i); })
-		    .y(function(d, i) { return y(d); });
+		const crosshair = fc.tool.crosshair();
+		const crosshairData = [];
 
-		var svg = d3.select(chartEl).append("svg")
-		    .attr("width", width)
-		    .attr("height", height + margin.top + margin.bottom)
-		  	.append("g")
-		    .attr("transform", "translate(" + 20 + "," + margin.top + ")");
+		const candlestick = fc.series.candlestick()
+		    .xScale(xScale)
+		    .yScale(yScale);
 
-		svg.append("defs").append("clipPath")
-		    .attr("id", "clip")
-		  	.append("rect")
-		    .attr("width", width)
-		    .attr("height", height);
+		const multi = fc.series.multi()
+		  .series([candlestick, crosshair])
+		  .xScale(xScale)
+		  .yScale(yScale)
+		  .mapping(function(series) {
+		      switch (series) {
+		          case candlestick:
+		              return data;
+		          case crosshair:
+		              return crosshairData;
+		      }
+		  });
 
-		svg.append("g")
-		    .attr("class", "x axis")
-		    .attr("transform", "translate(0," + y(0) + ")")
-		    .call(d3.svg.axis().scale(x).orient("bottom"));
+		container.append('g')
+		    .datum(data)
+		    .call(multi);
 
-		svg.append("g")
-		    .attr("class", "y axis")
-		    .call(d3.svg.axis().scale(y).tickSize(width).orient("right"));
+		const lineAnnotation = fc.annotation.line()
+		    .xScale(xScale)
+		    .yScale(yScale);
 
-		svg.selectAll('.axis text')
-		    .attr("x", 366)
+		const priceMarkers = [
+			  Math.floor(d3.min(data, function(d) { return d.high; })),
+			  Math.ceil(d3.max(data, function(d) { return d.low; }))
+		]
 
-		this.path = svg.append("g")
-		    .attr("clip-path", "url(#clip)")
-		  	.append("path")
-		    .datum(this.data)
-		    .attr("class", "line")
-		    .attr("d", this.line);
-
-		this.update();
+		container.append('g')
+			.datum(priceMarkers)
+			.call(lineAnnotation);
 
 	}
 

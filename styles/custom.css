@@ -31,6 +31,11 @@
    border-bottom:1px dotted #fff;
 }
 
+.teal .card-action a:hover {
+   text-decoration:none;
+   border:none;
+}
+
 .chip {
    float: right;
 }
