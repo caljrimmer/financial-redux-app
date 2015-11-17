@@ -2,7 +2,7 @@
 
 This project serves as a **simple** boilerplate to start building an financial application in React and Redux. Hign Frequency messeging via websockets.
 
-<img src="http://g.recordit.co/f87NLuD7Ut.gif" width="728" />
+<img src="http://g.recordit.co/bR2KXSbJUQ.gif" width="728" />
 
 # Features
 
