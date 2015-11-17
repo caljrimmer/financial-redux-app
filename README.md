@@ -2,6 +2,8 @@
 
 This project serves as a **simple** boilerplate to start building an financial application in React and Redux. Hign Frequency messeging via websockets.
 
+<img src="http://g.recordit.co/f87NLuD7Ut.gif" width="728" />
+
 # Features
 
 - Async server-side rendering
@@ -51,7 +53,7 @@ $ npm run start-prod
 Then Visit
 
 ```
-http://localhost:3002
+http://localhost:3002/home/10
 ```
 
 ## Run Test
