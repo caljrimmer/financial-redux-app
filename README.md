@@ -1,10 +1,6 @@
-# Isomorphic Redux App
+# Financial Redux App
 
-[![build status](https://travis-ci.org/caljrimmer/isomorphic-redux-app.svg?branch=master&style=flat-square)](https://travis-ci.org/caljrimmer/isomorphic-redux-app)
-
-This project serves as a **simple** boilerplate to start building an isomorphic rendering application in React and Redux.
-
-<img src="http://g.recordit.co/iChc7ZH3H1.gif" width="728" />
+This project serves as a **simple** boilerplate to start building an financial application in React and Redux. Hign Frequency messeging via websockets.
 
 # Features
 
@@ -12,20 +8,18 @@ This project serves as a **simple** boilerplate to start building an isomorphic 
 - Hot reloading middleware
 - Redux DevTools and Logging
 - Redux Routing
-- Reddit API example
-- Counter example
-- Todo example
-- Static content example
+- Coinbase Websocket API integration
+- Real-time Bitcoin pricing heartbeat chart
+- Throttled connection with URL params
 
 ## Stack
 
 - React.js
-- React-router
 - Webpack
 - Express
 - Redux
-- Redux-DevTools
 - Babel
+- D3
 
 ## Development Installation
 
@@ -39,7 +33,8 @@ $ npm start
 Then Visit
 
 ```
-http://localhost:3002
+http://localhost:3002/home/10
+//10 is the throttle. 1 - 100 (1 being fastest)
 ```
 
 ## Releasing to Production
@@ -67,7 +62,4 @@ npm test
 ## Other Boilerplate code
 
 [Portfolio Redux App](https://github.com/caljrimmer/portfolio-redux-app)
-
-## Credit
-
-App template was based on [Lanyon Theme](https://github.com/poole/lanyon) by [mdo](https://github.com/mdo)
+[Isomorphic Redux App](https://github.com/caljrimmer/isomorphic-redux-app)
